@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import models.Inventory;
+import models.Part;
+import models.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -97,8 +102,8 @@ public class AddProduct implements Initializable {
             alert.showAndWait();
         } else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete Part");
-            alert.setHeaderText("Deleting Part");
+            alert.setTitle("Delete models.Part");
+            alert.setHeaderText("Deleting models.Part");
             alert.setContentText("Are you sure that you want to delete this part " + associatedPartTable.getSelectionModel().getSelectedItem().getName() + "?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
@@ -122,12 +127,12 @@ public class AddProduct implements Initializable {
                 return;
             }
             if (Integer.parseInt(prodInvText.getText()) > Integer.parseInt(prodMaxText.getText())) {
-                alert.setContentText("Inventory value must be less than the maximum value.");
+                alert.setContentText("models.Inventory value must be less than the maximum value.");
                 alert.showAndWait();
                 return;
             }
             if (Integer.parseInt(prodInvText.getText()) < Integer.parseInt(prodMinText.getText())) {
-                alert.setContentText("Inventory value must be greater than the minimum value.");
+                alert.setContentText("models.Inventory value must be greater than the minimum value.");
                 alert.showAndWait();
             }
             else {
@@ -162,7 +167,7 @@ public class AddProduct implements Initializable {
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cancel Adding Product");
+        alert.setTitle("Cancel Adding models.Product");
         alert.setHeaderText("Return to Main Screen");
         alert.setContentText("Are you sure that you want to cancel?");
         Optional<ButtonType> result = alert.showAndWait();
@@ -176,7 +181,7 @@ public class AddProduct implements Initializable {
 
 
     public void goToMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("controllerview/MainScreen.java"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("");
         stage.setScene(new Scene(root));

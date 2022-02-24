@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import models.InHouse;
+import models.Inventory;
+import models.Outsource;
+import models.Part;
 
 import java.io.IOException;
 import java.net.URL;
@@ -68,12 +74,12 @@ public class ModifyPart implements Initializable {
                 return;
             }
             if (Integer.parseInt(partInvText.getText())> Integer.parseInt(partMaxText.getText())) {
-                alert.setContentText("Inventory must be less than the maximum value.");
+                alert.setContentText("models.Inventory must be less than the maximum value.");
                 alert.showAndWait();
                 return;
             }
             if (Integer.parseInt(partInvText.getText()) < Integer.parseInt(partMinText.getText()))  {
-                alert.setContentText("Inventory must be greater than the minimum value.");
+                alert.setContentText("models.Inventory must be greater than the minimum value.");
                 alert.showAndWait();
             }
             else {
@@ -121,7 +127,7 @@ public class ModifyPart implements Initializable {
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cancel Modify Part");
+        alert.setTitle("Cancel Modify models.Part");
         alert.setHeaderText("Return to Main");
         alert.setContentText("Are you sure you want to cancel?");
         Optional<ButtonType> result = alert.showAndWait();
@@ -131,7 +137,7 @@ public class ModifyPart implements Initializable {
     }
 
     public void goToMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/controllerview/Main Screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("");
         stage.setScene(new Scene(root));

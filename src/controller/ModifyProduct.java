@@ -1,4 +1,7 @@
+package controller;
+
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,8 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.awt.event.ActionEvent;
+import models.Inventory;
+import models.Part;
+import models.Product;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -119,7 +123,7 @@ public class ModifyProduct implements Initializable {
         }
         else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete Part");
+            alert.setTitle("Delete models.Part");
             alert.setHeaderText("Deleting the part selected");
             alert.setContentText("Are you sure that you want to delete " + associatedPartTable.getSelectionModel().getSelectedItem().getName() + "?");
             Optional<ButtonType> result = alert.showAndWait();
@@ -155,12 +159,12 @@ public class ModifyProduct implements Initializable {
                 return;
             }
             if (Integer.parseInt(prodInvText.getText()) > Integer.parseInt(prodMaxText.getText())) {
-                alert.setContentText("Inventory must be less than the maximum value.");
+                alert.setContentText("models.Inventory must be less than the maximum value.");
                 alert.showAndWait();
                 return;
             }
             if (Integer.parseInt(prodInvText.getText()) < Integer.parseInt(prodMinText.getText())) {
-                alert.setContentText("Inventory must be greater than the minimum value.");
+                alert.setContentText("models.Inventory must be greater than the minimum value.");
                 alert.showAndWait();
             }
             else {
@@ -186,7 +190,7 @@ public class ModifyProduct implements Initializable {
     }
 
     public void goToMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("controllerview/Main Screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("");
         stage.setScene(new Scene(root));

@@ -1,3 +1,5 @@
+package models;
+
 public class Outsource extends Part {
 
     private String companyName;

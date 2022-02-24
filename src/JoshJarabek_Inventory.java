@@ -3,12 +3,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.*;
 
 public class JoshJarabek_Inventory extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Users/josh/IdeaProjects/FinalSoftware1ForSure/src/controllerview/Main Screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
 
         Scene scene = new Scene(root);
 

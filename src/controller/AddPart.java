@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.InHouse;
+import models.Inventory;
+import models.Outsource;
+import models.Part;
 
 import java.io.IOException;
 import java.net.URL;
@@ -119,7 +125,7 @@ public class AddPart implements Initializable {
     }
 
     public void goToMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/controllerview/MainScreen.java"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("");
         stage.setScene(new Scene(root));

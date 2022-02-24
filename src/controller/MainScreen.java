@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import models.Inventory;
+import models.Part;
+import models.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,18 +76,18 @@ public class MainScreen implements Initializable {
 
     @FXML
     private void onAddPart(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("controllerview/Add Part.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Add Part.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Add Part");
+        stage.setTitle("Add models.Part");
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     @FXML
     private void onAddProduct(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("controllerview/Add Product.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("src/views/Add Product.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Add Product");
+        stage.setTitle("Add models.Product");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -97,8 +102,8 @@ public class MainScreen implements Initializable {
             alert.showAndWait();
         } else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete Part");
-            alert.setHeaderText("Deleting Part");
+            alert.setTitle("Delete models.Part");
+            alert.setHeaderText("Deleting models.Part");
             alert.setContentText("Are you sure you want to delete " + partTable.getSelectionModel().getSelectedItem().getName() + "?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
@@ -118,8 +123,8 @@ public class MainScreen implements Initializable {
             alert.showAndWait();
         } else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete Product");
-            alert.setHeaderText("Deleting Product");
+            alert.setTitle("Delete models.Product");
+            alert.setHeaderText("Deleting models.Product");
             alert.setContentText("Are you sure you want to delete " + prodTable.getSelectionModel().getSelectedItem().getName() + "?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
@@ -145,9 +150,9 @@ public class MainScreen implements Initializable {
             alert.setContentText("Nothing was selected to modify");
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("controllerview/Modify Part.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("src/views/Modify Part.fxml"));
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Modify Part");
+            stage.setTitle("Modify models.Part");
             stage.setScene(new Scene(root));
             stage.show();
         }
@@ -164,9 +169,9 @@ public class MainScreen implements Initializable {
             alert.setContentText("Nothing was selected to modify");
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("controllerview/Modify Product.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("src/views/Modify Product.fxml"));
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Modify Product");
+            stage.setTitle("Modify models.Product");
             stage.setScene(new Scene(root));
             stage.show();
         }

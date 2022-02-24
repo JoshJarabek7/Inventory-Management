@@ -1,27 +1,41 @@
-/**
- *
- * @author Josh Jarabek
- */
-public abstract class Part {
+package models;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class Product {
+    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
     private double price;
-    private int stock;
+    private int inv;
     private int min;
     private int max;
-    public Part(int id, String name, double price, int stock, int min, int max) {
+    public Product(int id, String name, double price, int inv, int min, int max) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.stock = stock;
+        this.inv = inv;
         this.min = min;
         this.max = max;
+    }
+
+    public void addAssociatedParts(Part part) {
+        this.associatedParts.add(part);
+    }
+    public boolean deleteAssociatedParts(Part selectedAssociatedPart) {
+        associatedParts.remove(selectedAssociatedPart);
+        return true;
+    }
+    public ObservableList<Part> getAllAssociatedParts() {
+        return associatedParts;
     }
 
     /**
      * @return the id
      */
     public int getId() {
+
         return id;
     }
 
@@ -29,6 +43,7 @@ public abstract class Part {
      * @param id the id to set
      */
     public void setId(int id) {
+
         this.id = id;
     }
 
@@ -36,6 +51,7 @@ public abstract class Part {
      * @return the name
      */
     public String getName() {
+
         return name;
     }
 
@@ -43,6 +59,7 @@ public abstract class Part {
      * @param name the name to set
      */
     public void setName(String name) {
+
         this.name = name;
     }
 
@@ -50,6 +67,7 @@ public abstract class Part {
      * @return the price
      */
     public double getPrice() {
+
         return price;
     }
 
@@ -57,34 +75,39 @@ public abstract class Part {
      * @param price the price to set
      */
     public void setPrice(double price) {
+
         this.price = price;
     }
 
     /**
-     * @return the stock
+     * @return the inventory
      */
     public int getStock() {
-        return stock;
+
+        return inv;
     }
 
     /**
-     * @param stock the stock to set
+     * @param inv sets as inventory
      */
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setStock(int inv) {
+
+        this.inv = inv;
     }
 
     /**
      * @return the min
      */
     public int getMin() {
+
         return min;
     }
 
     /**
-     * @param min the min to set
+     * @param min sets as minimum
      */
     public void setMin(int min) {
+
         this.min = min;
     }
 
@@ -92,6 +115,7 @@ public abstract class Part {
      * @return the max
      */
     public int getMax() {
+
         return max;
     }
 
@@ -99,7 +123,9 @@ public abstract class Part {
      * @param max the max to set
      */
     public void setMax(int max) {
+
         this.max = max;
     }
+
 
 }
