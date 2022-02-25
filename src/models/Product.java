@@ -4,12 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * The type Product.
+ * Creates a class called Product
+ * Declares each variable, as well as a private ObservableList called associatedParts
  */
-// Creates a class called Product
 public class Product {
 
-    //Declares each variable, as well as a private ObservableList called associatedParts
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
@@ -28,7 +27,6 @@ public class Product {
      * @param min   the min
      * @param max   the max
      */
-// Defines the Product method for getters and setters
     public Product(int id, String name, double price, int inv, int min, int max) {
         this.id = id;
         this.name = name;
@@ -43,7 +41,6 @@ public class Product {
      *
      * @param part the part
      */
-// Method that adds a new part to the list of associated parts
     public void addAssociatedParts(Part part) {
         this.associatedParts.add(part);
     }

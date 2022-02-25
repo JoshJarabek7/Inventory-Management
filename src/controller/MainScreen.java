@@ -93,29 +93,38 @@ public class MainScreen implements Initializable {
     private static Product selectedProduct = null;
 
 
-
-    /*
-    Getter to return selectedPart
+    /**
+     * Gets selected part.
+     * Getter to return selectedPart
+     *
+     * @return the selected part
      */
+
     public static Part getSelectedPart() {
         return selectedPart;
     }
 
-    /*
-    Getter to return selectedProduct
+    /**
+     * Gets selected product.
+     * Getter to return selectedProduct
+     * @return the selected product
      */
+
     public static Product getSelectedProduct() {
         return selectedProduct;
     }
 
 
-
-
-    /*
-    ADD PARTS TO INVENTORY
-
-    Loads the Add Part screen from the fxml file
+    /**
+     * On add part.
+     *
+     * Add parts to inventory
+     * Loads the Add Part screen from the fxml file
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onAddPart(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Add Part.fxml"));
@@ -126,12 +135,16 @@ public class MainScreen implements Initializable {
     }
 
 
-
-    /*
-    ADD PRODUCTS TO INVENTORY
-
-    Loads the Add Product screen from the fxml file
+    /**
+     * On add product.
+     *
+     * Add products to inventory
+     * Loads the Add Product screen from the fxml file
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onAddProduct(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Add Product.fxml"));
@@ -142,14 +155,18 @@ public class MainScreen implements Initializable {
     }
 
 
-    /*
-    DELETE PARTS FROM INVENTORY
+    /**
+     * On delete part.
+     *
+     * Delete parts from inventory
+     * Checks the part table to see if any items are selected
+     * If no items are selected, then an alert is shown saying "Nothing was selected to delete"
+     * If an item is selected, then an alert is shown asking to confirm their decision
+     * If decision is confirmed, the part will be deleted from inventory
+     *
+     * @param event the event
+     */
 
-    Checks the part table to see if any items are selected
-    If no items are selected, then an alert is shown saying "Nothing was selected to delete"
-    If an item is selected, then an alert is shown asking to confirm their decision
-    If decision is confirmed, the part will be deleted from inventory
-    */
     @FXML
     private void onDeletePart(ActionEvent event) {
         if (partTable.getSelectionModel().isEmpty()) {
@@ -172,14 +189,19 @@ public class MainScreen implements Initializable {
     }
 
 
-    /*
-    DELETE PRODUCTS FROM INVENTORY
+    /**
+     * On delete product.
+     *
+     * Delete products from inventory
+     *
+     * Checks the product table to see if any items are selected
+     * If no items are selected, then an alert is shown saying "Nothing was selected to delete"
+     * If an item is selected, then an alert is shown asking to confirm their decision
+     * If decision is confirmed, the product will be deleted from inventory
+     *
+     * @param event the event
+     */
 
-    Checks the product table to see if any items are selected
-    If no items are selected, then an alert is shown saying "Nothing was selected to delete"
-    If an item is selected, then an alert is shown asking to confirm their decision
-    If decision is confirmed, the product will be deleted from inventory
-    */
     @FXML
     void onDeleteProduct(ActionEvent event) {
         if (prodTable.getSelectionModel().isEmpty()) {
@@ -202,23 +224,34 @@ public class MainScreen implements Initializable {
     }
 
 
-    /*
-    EXIT THE APPLICATION
-
-    This code is used to exit the application when a user presses the "X" button
+    /**
+     * On action exit.
+     *
+     * Exit the application
+     *
+     * This code is used to exit the application when a user presses the "X" button
+     *
+     * @param event the event
      */
+
     @FXML
     private void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
-    /*
-    MODIFY PARTS IN INVENTORY
-
-    This code determines what happens when the "Modify Part" button is clicked
-    If no part is selected when clicked, then an Error Alert is shown
-    If a part is selected when clicked, then a new scene object is created and set as the stage for the event
+    /**
+     * On modify part.
+     *
+     * Modify parts in inventory
+     *
+     * This code determines what happens when the "Modify Part" button is clicked
+     * If no part is selected when clicked, then an Error Alert is shown
+     * If a part is selected when clicked, then a new scene object is created and set as the stage for the event
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onModifyPart(ActionEvent event) throws IOException {
         selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -238,13 +271,19 @@ public class MainScreen implements Initializable {
         }
     }
 
-    /*
-    MODIFY PRODUCTS IN INVENTORY
-
-    This code determines what happens when the "Modify Product" button is clicked
-    If no product is selected when clicked, then an Error Alert is shown
-    If a product is selected when clicked, then a new scene object is created and set as the stage for the event
+    /**
+     * On modify product.
+     *
+     * Modify products in inventory
+     *
+     * This code determines what happens when the "Modify Product" button is clicked
+     * If no product is selected when clicked, then an Error Alert is shown
+     * If a product is selected when clicked, then a new scene object is created and set as the stage for the event
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onModifyProduct(ActionEvent event) throws IOException {
         selectedProduct = prodTable.getSelectionModel().getSelectedItem();
@@ -264,13 +303,18 @@ public class MainScreen implements Initializable {
         }
     }
 
-    /*
-    SEARCH FOR PARTS IN INVENTORY
-
-    The code starts by searching for the text entered in the search bar
-    If there is no text, it will prompt the user to enter a value
-    After that, it searches for parts using the ObservableList, and adds them to the partTable if they are not already present.
+    /**
+     * Search parts.
+     *
+     * Search for parts in inventory
+     *
+     * The code starts by searching for the text entered in the search bar
+     * If there is no text, it will prompt the user to enter a value
+     * After that, it searches for parts using the ObservableList, and adds them to the partTable if they are not already present.
+     *
+     * @param event the event
      */
+
     @FXML
     private void searchParts(ActionEvent event) {
         String s = partSearchField.getText().toLowerCase();
@@ -288,13 +332,18 @@ public class MainScreen implements Initializable {
         }
     }
 
-    /*
-    SEARCH PRODUCTS IN INVENTORY
-
-    The code starts by searching for the text entered in the search bar
-    If there is no text, it will prompt the user to enter a value
-    After that, it searched for products using the ObservableList, and adds them to the productTable if they are not already present.
+    /**
+     * Search products.
+     *
+     * Search for products in inventory
+     *
+     * The code starts by searching for the text entered in the search bar
+     * If there is no text, it will prompt the user to enter a value
+     * After that, it searched for products using the ObservableList, and adds them to the productTable if they are not already present.
+     *
+     * @param event the event
      */
+
     @FXML
     private void searchProducts(ActionEvent event) {
         String st = productSearchField.getText().toLowerCase();
@@ -312,14 +361,16 @@ public class MainScreen implements Initializable {
         }
     }
 
-    /*
-    The code starts by initializing the table with all parts and products
-
-    The partTable is initialized with Inventory.getAllParts(), which returns a list of Part objects, while prodTable is initialized with Inventory.getAllProducts().
-
-    The Columns are set to be a PropertyValueFactory<> that will return a  value for each row in the table
-    */
-
+    /**
+     * Initialize Tables
+     *
+     * The code starts by initializing the table with all parts and products
+     * The partTable is initialized with Inventory.getAllParts(), which returns a list of Part objects, while prodTable is initialized with Inventory.getAllProducts()
+     * The Columns are set to be a PropertyValueFactory<> that will return a  value for each row in the table
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

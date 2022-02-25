@@ -76,14 +76,17 @@ public class AddProduct implements Initializable {
     private final ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
 
 
-    /*
-    The method for what happens when the "Add" button is clicked
-
-    Functionality for adding associated parts to the product being added
-    If no parts are selected, it will return
-    If parts are selected, they will be added to the associated parts list
-
+    /**
+     * On action add.
+     *
+     * The method for what happens when the "Add" button is clicked
+     *
+     * Functionality for adding associated parts to the product being added
+     * If no parts are selected, it will return
+     * If parts are selected, they will be added to the associated parts list
+     * @param event the event
      */
+
     @FXML
     private void onActionAdd(ActionEvent event) {
         Part selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -108,12 +111,17 @@ public class AddProduct implements Initializable {
     }
 
 
-    /*
-    The method for what happens when the "Remove Associated Part" button is clicked
-
-    If nothing is selected, an error alert will be shown to the user
-    If a part is selected, a confirmation alert will be shown where the user can confirm their decision
+    /**
+     * On action delete.
+     *
+     * The method for what happens when the "Remove Associated Part" button is clicked
+     *
+     * If nothing is selected, an error alert will be shown to the user
+     * If a part is selected, a confirmation alert will be shown where the user can confirm their decision
+     *
+     * @param event the event
      */
+
     @FXML
     private void onActionDelete(ActionEvent event) {
 
@@ -142,15 +150,21 @@ public class AddProduct implements Initializable {
         }
     }
 
-    /*
-    The method for what happens when the "Save" button is clicked
-
-    Error alerts set in place for:
-    1. The product's maximum inventory entered is less than the product's minimum inventory entered.
-    2. The product's current inventory entered is greater than the product's maximum inventory entered.
-    3. The product's current inventory entered is less than the product's minimum inventory entered.
-    4. Values entered are not valid (ex. Text was entered in an integer only field).
+    /**
+     * On action save.
+     *
+     * The method for what happens when the "Save" button is clicked
+     *
+     * Error alerts set in place for:
+     *     1. The product's maximum inventory entered is less than the product's minimum inventory entered.
+     *     2. The product's current inventory entered is greater than the product's maximum inventory entered.
+     *     3. The product's current inventory entered is less than the product's minimum inventory entered.
+     *     4. Values entered are not valid (ex. Text was entered in an integer only field).
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onActionSave(ActionEvent event) throws IOException {
         try {
@@ -195,13 +209,18 @@ public class AddProduct implements Initializable {
     }
 
 
-    /*
-    The method for what happens when the search button is clicked
-
-    The method is a search function for parts
-    The purpose of the code is to search for parts in the inventory that contain a string value of "s"
-    When the search button is clicked, a search is done on the text within the partSearchField
+    /**
+     * Search parts.
+     *
+     * The method for what happens when the search button is clicked
+     *
+     * The method is a search function for parts
+     * The purpose of the code is to search for parts in the inventory that contain a string value of "s"
+     * When the search button is clicked, a search is done on the text within the partSearchField
+     *
+     * @param event the event
      */
+
     @FXML
     private void searchParts(ActionEvent event) {
         String s = partSearchField.getText().toLowerCase();
@@ -219,13 +238,19 @@ public class AddProduct implements Initializable {
         }
     }
 
-    /*
-    The method for what happens when the cancel button is clicked
-
-    Asks the user if they want to cancel adding the product to the inventory
-    A confirmation alert is thrown asking the user to confirm the cancellation
-    If the user clicks "OK" on the confirmation alert, they are taken back to MainScreen
+    /**
+     * On action cancel.
+     *
+     * The method for what happens when the cancel button is clicked
+     *
+     * Asks the user if they want to cancel adding the product to the inventory
+     * A confirmation alert is thrown asking the user to confirm the cancellation
+     * If the user clicks "OK" on the confirmation alert, they are taken back to MainScreen
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -239,13 +264,18 @@ public class AddProduct implements Initializable {
     }
 
 
-
-    /*
-    The method for what happens when the goToMain method is actioned
-
-    The MainScreen view is loaded into a Node object and is passed to the goToMain() method
-    This sends the user back to the MainScreen
+    /**
+     * Go to main.
+     *
+     * The method for what happens when the goToMain method is actioned
+     *
+     * The MainScreen view is loaded into a Node object and is passed to the goToMain() method
+     * This sends the user back to the MainScreen
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -254,10 +284,15 @@ public class AddProduct implements Initializable {
         stage.show();
     }
 
-    /*
-    Initializes the table with a list of parts and their associated information
-    The code sets the cell value factories for each column in the table to use PropertyValueFactory<> objects
-    The initialize method is called when the activity starts up, so it's called before any other methods
+    /**
+     * Initialize Table
+     *
+     * Initializes the table with a list of parts and their associated information
+     * The code sets the cell value factories for each column in the table to use PropertyValueFactory<> objects
+     * The initialize method is called when the activity starts up, so it's called before any other methods
+     *
+     * @param url
+     * @param resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

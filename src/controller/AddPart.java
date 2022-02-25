@@ -57,15 +57,20 @@ public class AddPart implements Initializable {
     private Button aCancelButton;
 
 
-    /*
-    The method for what happens when each radio button is clicked
-
-    If the In-House radio button is clicked:
-    The Label is set to "Machine ID" and the Prompt Text in the Text Field is set to "Mach ID"
-
-    If the OutSourced radio button is clicked:
-    The Label is set to "Company Name" and the Prompt Text in the Text Field is set to "Company Name"
+    /**
+     * Source toggle.
+     *
+     * The method for what happens when each radio button is clicked
+     *
+     * If the In-House radio button is clicked:
+     *     The Label is set to "Machine ID" and the Prompt Text in the Text Field is set to "Mach ID"
+     *
+     * If the OutSourced radio button is clicked:
+     *     The Label is set to "Company Name" and the Prompt Text in the Text Field is set to "Company Name"
+     *
+     * @param event the event
      */
+
     @FXML
     private void sourceToggle(ActionEvent event) {
 
@@ -84,21 +89,24 @@ public class AddPart implements Initializable {
         }
     }
 
-    /*
-    The method for what happens when the "Save" button is clicked
-
-    Error alerts set in place for:
-    1. The part's maximum inventory entered is less than the part's minimum inventory entered.
-    2. The part's current inventory entered is greater than the part's maximum inventory entered.
-    3. The part's current inventory entered is less than the part's minimum inventory entered.
-    4. User did not select a part's source (In-House or Outsourced).
-    5. Values entered are not valid (ex. Text was entered in an integer only field).
-
-    If the In-House radio button is clicked, the corresponding fields are loaded for In-House parts.
-    If the Outsourced radio button is clicked, the corresponding fields are loaded for Outsourced parts.
-
-    If no alerts are triggered after clicking save, the parts are then saved and the user is returned to the Main Screen.
+    /**
+     * On action save.
+     *
+     * The method for what happens when the "Save" button is clicked
+     *
+     * Error alerts set in place for:
+     *     1. The part's maximum inventory entered is less than the part's minimum inventory entered.
+     *     2. The part's current inventory entered is greater than the part's maximum inventory entered.
+     *     3. The part's current inventory entered is less than the part's minimum inventory entered.
+     *     4. User did not select a part's source (In-House or Outsourced).
+     *     5. Values entered are not valid (ex. Text was entered in an integer only field).
+     *
+     * If no alerts are triggered after clicking save, the parts are then saved and the user is returned to the Main Screen.
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onActionSave(ActionEvent event) throws IOException {
 
@@ -172,12 +180,18 @@ public class AddPart implements Initializable {
         }
     }
 
-    /*
-    The method for what happens when the "Cancel" button is clicked
-
-    Asks the user if they want to cancel adding a part to the inventory system
-    If the user clicks "OK", then the user is taken back to MainScreen
+    /**
+     * On action cancel.
+     *
+     * The method for what happens when the "Cancel" button is clicked
+     *
+     * Asks the user if they want to cancel adding a part to the inventory system
+     * If the user clicks "OK", then the user is taken back to MainScreen
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -191,12 +205,18 @@ public class AddPart implements Initializable {
 
     }
 
-    /*
-    The method for what happens when the goToMain method is actioned
-
-    The MainScreen view is loaded into a Node object and is passed to the goToMain() method
-    This sends the application back to the MainScreen
+    /**
+     * Go to main.
+     *
+     * The method for what happens when the goToMain method is actioned
+     *
+     * The MainScreen view is loaded into a Node object and is passed to the goToMain() method
+     * This sends the application back to the MainScreen
+     *
+     * @param event the event
+     * @throws IOException the io exception
      */
+
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -205,8 +225,14 @@ public class AddPart implements Initializable {
         stage.show();
     }
 
-
-    //The code will initialize the application with a URL and ResourceBundle
+    /**
+     * Initialize Application
+     *
+     * The code will initialize the application with a URL and ResourceBundle
+     *
+     * @param url
+     * @param resourceBundle
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //TODO
