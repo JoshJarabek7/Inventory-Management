@@ -297,20 +297,28 @@ public class MainScreen implements Initializable {
      */
     @FXML
     private void searchProducts(ActionEvent event) {
-        String s = productSearchField.getText().toLowerCase();
-        ObservableList<Product> ProductsList = Inventory.lookupProduct(s);
+        String st = productSearchField.getText().toLowerCase();
+        ObservableList<Product> productsList = Inventory.lookupProduct(st);
         try {
-            if (ProductsList.isEmpty()) {
-                int i = Integer.parseInt(s);
-                Product p = Inventory.lookupProduct(i);
-                ProductsList.add(p);
+            if (productsList.isEmpty()) {
+                int i = Integer.parseInt(st);
+                Product pr = Inventory.lookupProduct(i);
+                productsList.add(pr);
             }
-            prodTable.setItems(ProductsList);
+            prodTable.setItems(productsList);
         }
         catch (NumberFormatException e) {
             System.out.println("Please enter a valid value in the search bar.");
         }
     }
+
+    /*
+    The code starts by initializing the table with all parts and products
+
+    The partTable is initialized with Inventory.getAllParts(), which returns a list of Part objects, while prodTable is initialized with Inventory.getAllProducts().
+
+    The Columns are set to be a PropertyValueFactory<> that will return a  value for each row in the table
+    */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -324,7 +332,7 @@ public class MainScreen implements Initializable {
         prodTable.setItems(Inventory.getAllProducts());
         prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
         prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 

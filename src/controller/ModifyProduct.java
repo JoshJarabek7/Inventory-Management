@@ -19,7 +19,11 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+// Creates a new instance of the ModifyProduct class
 public class ModifyProduct implements Initializable {
+
+    // Functions for the "Modify Product" screen
+
     @FXML
     private TextField prodIdText;
     @FXML
@@ -65,9 +69,20 @@ public class ModifyProduct implements Initializable {
     @FXML
     private TextField partSearchField;
 
-    private final Product selectedProduct = MainScreen.getSelectedProduct();
+
+    // Retrieves the selected product from the MainScreen and assigns it to a variable named selectedProduct
+    private Product selectedProduct = MainScreen.getSelectedProduct();
+
+    // Iterates over the selectedProduct and returns a list of all associated parts
     ObservableList<Part> associatedPartsList = selectedProduct.getAllAssociatedParts();
 
+    /*
+    The method for what happens when the search button is clicked
+
+    The method is a search function for parts
+    The purpose of the code is to search for parts in the inventory that contain a string value of "s"
+    When the search button is clicked, a search is done on the text within the partSearchField
+     */
     @FXML
     private void searchParts(ActionEvent event) {
         String s = partSearchField.getText().toLowerCase();
@@ -83,12 +98,18 @@ public class ModifyProduct implements Initializable {
     }
     catch (NumberFormatException e) {
         System.out.println("Please enter a valid value into the search field.");
+        }
     }
-    }
 
 
 
+    /*
+    The method for what happens when the "Add" button is clicked
 
+    Functionality for adding associated parts to the product being modified
+    If no parts are selected, it will return
+    If parts are selected, they will be added to the associated parts list
+     */
     @FXML
     private void onActionAdd(ActionEvent event) {
         Part selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -112,6 +133,12 @@ public class ModifyProduct implements Initializable {
         }
     }
 
+    /*
+    The method for what happens when the "Remove Associated Part" button is clicked
+
+    If nothing is selected, an error alert will be shown to the user
+    If a part is selected, a confirmation alert will be shown where the user can confirm their decision
+     */
     @FXML
     private void onActionDelete(ActionEvent event) {
         if (associatedPartTable.getSelectionModel().isEmpty()) {
@@ -134,6 +161,13 @@ public class ModifyProduct implements Initializable {
         }
     }
 
+    /*
+    The method for what happens when the cancel button is clicked
+
+    Asks the user if they want to cancel modifying the product
+    A confirmation alert is thrown asking the user to confirm the cancellation
+    If the user clicks "OK" on the confirmation alert, they are taken back to MainScreen
+     */
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -146,6 +180,15 @@ public class ModifyProduct implements Initializable {
         }
     }
 
+    /*
+    The method for what happens when the "Save" button is clicked
+
+    Error alerts set in place for:
+    1. The product's maximum inventory entered is less than the product's minimum inventory entered.
+    2. The product's current inventory entered is greater than the product's maximum inventory entered.
+    3. The product's current inventory entered is less than the product's minimum inventory entered.
+    4. Values entered are not valid (ex. Text was entered in an integer only field).
+     */
     @FXML
     private void onActionSave(ActionEvent event) throws IOException {
         try {
@@ -153,42 +196,60 @@ public class ModifyProduct implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText("Error has occurred");
 
+            // Maximum inventory entered is less than the minimum inventory entered
             if (Integer.parseInt(prodMaxText.getText()) < Integer.parseInt(prodMinText.getText())) {
                 alert.setContentText("Max value must be greater than the minimum value.");
                 alert.showAndWait();
                 return;
             }
+            // Current inventory entered is greater than the maximum inventory entered
             if (Integer.parseInt(prodInvText.getText()) > Integer.parseInt(prodMaxText.getText())) {
                 alert.setContentText("models.Inventory must be less than the maximum value.");
                 alert.showAndWait();
                 return;
             }
+            // Current inventory entered is less than the minimum inventory entered
             if (Integer.parseInt(prodInvText.getText()) < Integer.parseInt(prodMinText.getText())) {
                 alert.setContentText("models.Inventory must be greater than the minimum value.");
                 alert.showAndWait();
             }
+
+            /*
+            Creates a new Product object and sets its properties to those of the selectedProduct object
+            Then it gets all the associated parts for that product and adds them to modifiedProduct
+            Finally, it modifies the inventory with this new product information
+            */
             else {
                 selectedProduct.setId(Integer.parseInt(prodIdText.getText()));
                 selectedProduct.setName(prodNameText.getText());
                 selectedProduct.setPrice(Double.parseDouble(prodPriceText.getText()));
-                selectedProduct.setStock(Integer.parseInt(prodInvText.getText()));
+                selectedProduct.setInv(Integer.parseInt(prodInvText.getText()));
                 selectedProduct.setMin(Integer.parseInt(prodMinText.getText()));
                 selectedProduct.setMax(Integer.parseInt(prodMaxText.getText()));
 
-                Product modifiedProduct = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getPrice(), selectedProduct.getStock(), selectedProduct.getMin(), selectedProduct.getMax());
+                Product modifiedProduct = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getPrice(), selectedProduct.getInv(), selectedProduct.getMin(), selectedProduct.getMax());
                 Inventory.modifyProduct(selectedProduct.getId(),modifiedProduct);
 
                 for (Part part : associatedPartsList) {
                     modifiedProduct.addAssociatedParts(part);
                 }
+
+                // goToMain method is called and the user is returned to the MainScreen
                 goToMain(event);
             }
         }
+        // Exception thrown if the values entered are not valid
         catch (NumberFormatException e) {
             System.out.println("Please enter valid values.");
         }
     }
 
+    /*
+    The method for what happens when the goToMain method is actioned
+
+    The MainScreen view is loaded into a Node object and is passed to the goToMain() method
+    This sends the user back to the MainScreen
+     */
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -197,6 +258,13 @@ public class ModifyProduct implements Initializable {
         stage.show();
     }
 
+    /*
+    Initializes the table with a list of all parts
+
+    Sets the cell value factories for each column in the table to use PropertyValueFactory<> objects created from string properties
+
+    The code initializes a product object and then uses it to initialize an associated part object, which is used to initialize its corresponding columns in the associated part table
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -210,13 +278,12 @@ public class ModifyProduct implements Initializable {
         associatedPartTable.setItems(selectedProduct.getAllAssociatedParts());
         associatedPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         prodIdText.setText(Integer.toString(selectedProduct.getId()));
         prodNameText.setText(selectedProduct.getName());
-        prodInvText.setText(Integer.toString(selectedProduct.getStock()));
-        prodInvText.setText(Integer.toString(selectedProduct.getStock()));
+        prodInvText.setText(Integer.toString(selectedProduct.getInv()));
         prodPriceText.setText(Double.toString(selectedProduct.getPrice()));
         prodMaxText.setText(Integer.toString(selectedProduct.getMax()));
         prodMinText.setText(Integer.toString(selectedProduct.getMin()));

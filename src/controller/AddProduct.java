@@ -21,7 +21,11 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+// Creates a new instance of the AddProduct class
 public class AddProduct implements Initializable {
+
+    // Functions for the "Add Product" screen
+
     @FXML
     private TextField prodIdText;
     @FXML
@@ -67,8 +71,19 @@ public class AddProduct implements Initializable {
     @FXML
     private TextField partSearchField;
 
+
+    // Declares a variable of type ObservableList and assigns it to the variable associatedPartsList
     private final ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
 
+
+    /*
+    The method for what happens when the "Add" button is clicked
+
+    Functionality for adding associated parts to the product being added
+    If no parts are selected, it will return
+    If parts are selected, they will be added to the associated parts list
+
+     */
     @FXML
     private void onActionAdd(ActionEvent event) {
         Part selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -92,15 +107,27 @@ public class AddProduct implements Initializable {
         }
     }
 
+
+    /*
+    The method for what happens when the "Remove Associated Part" button is clicked
+
+    If nothing is selected, an error alert will be shown to the user
+    If a part is selected, a confirmation alert will be shown where the user can confirm their decision
+     */
     @FXML
     private void onActionDelete(ActionEvent event) {
+
+        // Error Alert shown when nothing has been selected
         if (associatedPartTable.getSelectionModel().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Nothing Selected");
             alert.setContentText("Nothing selected to delete.");
             alert.showAndWait();
-        } else if (Inventory.getAllParts().size() > 0) {
+        }
+
+        // Confirmation Alert shown when an item is selected
+        else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete models.Part");
             alert.setHeaderText("Deleting models.Part");
@@ -108,12 +135,22 @@ public class AddProduct implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
 
+                // If confirmed, the part will be removed from the associated parts list
                 associatedPartsList.remove(associatedPartTable.getSelectionModel().getSelectedItem());
 
             }
         }
     }
 
+    /*
+    The method for what happens when the "Save" button is clicked
+
+    Error alerts set in place for:
+    1. The product's maximum inventory entered is less than the product's minimum inventory entered.
+    2. The product's current inventory entered is greater than the product's maximum inventory entered.
+    3. The product's current inventory entered is less than the product's minimum inventory entered.
+    4. Values entered are not valid (ex. Text was entered in an integer only field).
+     */
     @FXML
     private void onActionSave(ActionEvent event) throws IOException {
         try {
@@ -121,20 +158,25 @@ public class AddProduct implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText("Error");
 
+            // Maximum inventory entered is less than the minimum inventory entered
             if (Integer.parseInt(prodMaxText.getText()) < Integer.parseInt(prodMinText.getText())) {
                 alert.setContentText("Maximum value must be greater than the minimum value.");
                 alert.showAndWait();
                 return;
             }
+            // Current inventory entered is greater than the maximum inventory entered
             if (Integer.parseInt(prodInvText.getText()) > Integer.parseInt(prodMaxText.getText())) {
-                alert.setContentText("models.Inventory value must be less than the maximum value.");
+                alert.setContentText("Inventory value must be less than the maximum value.");
                 alert.showAndWait();
                 return;
             }
+            // Current inventory entered is less than the minimum inventory entered
             if (Integer.parseInt(prodInvText.getText()) < Integer.parseInt(prodMinText.getText())) {
-                alert.setContentText("models.Inventory value must be greater than the minimum value.");
+                alert.setContentText("Inventory value must be greater than the minimum value.");
                 alert.showAndWait();
             }
+
+            // If no errors are thrown, the new product and its associated parts are added to the inventory
             else {
                 Product p = new Product(Inventory.productIdCounter(), prodNameText.getText(), Double.parseDouble(prodPriceText.getText()), Integer.parseInt(prodInvText.getText()),
                         Integer.parseInt(prodMinText.getText()), Integer.parseInt(prodMaxText.getText()));
@@ -143,12 +185,23 @@ public class AddProduct implements Initializable {
                 for (Part part : associatedPartsList) {
                     p.addAssociatedParts(part);
                 }
+
+                // goToMain method is called and the user is returned to the MainScreen
                 goToMain(event);
             }
         }
+        // Exception thrown if the values entered are not valid
         catch (NumberFormatException e){ System.out.println("Please enter valid value into the field."); }
     }
 
+
+    /*
+    The method for what happens when the search button is clicked
+
+    The method is a search function for parts
+    The purpose of the code is to search for parts in the inventory that contain a string value of "s"
+    When the search button is clicked, a search is done on the text within the partSearchField
+     */
     @FXML
     private void searchParts(ActionEvent event) {
         String s = partSearchField.getText().toLowerCase();
@@ -161,13 +214,22 @@ public class AddProduct implements Initializable {
             }
             partTable.setItems(partsList);
         }
-        catch (NumberFormatException e){ System.out.println("Please enter a valid value into the search bar."); }
+        catch (NumberFormatException e){
+            System.out.println("Please enter a valid value into the search bar.");
+        }
     }
 
+    /*
+    The method for what happens when the cancel button is clicked
+
+    Asks the user if they want to cancel adding the product to the inventory
+    A confirmation alert is thrown asking the user to confirm the cancellation
+    If the user clicks "OK" on the confirmation alert, they are taken back to MainScreen
+     */
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cancel Adding models.Product");
+        alert.setTitle("Cancel Adding Product");
         alert.setHeaderText("Return to Main Screen");
         alert.setContentText("Are you sure that you want to cancel?");
         Optional<ButtonType> result = alert.showAndWait();
@@ -178,8 +240,12 @@ public class AddProduct implements Initializable {
 
 
 
+    /*
+    The method for what happens when the goToMain method is actioned
 
-
+    The MainScreen view is loaded into a Node object and is passed to the goToMain() method
+    This sends the user back to the MainScreen
+     */
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -188,6 +254,11 @@ public class AddProduct implements Initializable {
         stage.show();
     }
 
+    /*
+    Initializes the table with a list of parts and their associated information
+    The code sets the cell value factories for each column in the table to use PropertyValueFactory<> objects
+    The initialize method is called when the activity starts up, so it's called before any other methods
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -200,7 +271,7 @@ public class AddProduct implements Initializable {
         associatedPartTable.setItems(associatedPartsList);
         associatedPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 

@@ -3,14 +3,32 @@ package models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * The type Product.
+ */
+// Creates a class called Product
 public class Product {
-    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+
+    //Declares each variable, as well as a private ObservableList called associatedParts
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
     private double price;
     private int inv;
     private int min;
     private int max;
+
+    /**
+     * Instantiates a new Product.
+     *
+     * @param id    the id
+     * @param name  the name
+     * @param price the price
+     * @param inv   the inv
+     * @param min   the min
+     * @param max   the max
+     */
+// Defines the Product method for getters and setters
     public Product(int id, String name, double price, int inv, int min, int max) {
         this.id = id;
         this.name = name;
@@ -20,18 +38,40 @@ public class Product {
         this.max = max;
     }
 
+    /**
+     * Add associated parts.
+     *
+     * @param part the part
+     */
+// Method that adds a new part to the list of associated parts
     public void addAssociatedParts(Part part) {
         this.associatedParts.add(part);
     }
+
+    /**
+     * Delete associated parts boolean.
+     *
+     * @param selectedAssociatedPart the selected associated part
+     * @return the boolean
+     */
+
     public boolean deleteAssociatedParts(Part selectedAssociatedPart) {
         associatedParts.remove(selectedAssociatedPart);
         return true;
     }
+
+    /**
+     * Gets all associated parts.
+     *
+     * @return the all associated parts
+     */
     public ObservableList<Part> getAllAssociatedParts() {
         return associatedParts;
     }
 
     /**
+     * Gets id.
+     *
      * @return the id
      */
     public int getId() {
@@ -40,6 +80,8 @@ public class Product {
     }
 
     /**
+     * Sets id.
+     *
      * @param id the id to set
      */
     public void setId(int id) {
@@ -48,6 +90,8 @@ public class Product {
     }
 
     /**
+     * Gets name.
+     *
      * @return the name
      */
     public String getName() {
@@ -56,6 +100,8 @@ public class Product {
     }
 
     /**
+     * Sets name.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -64,6 +110,8 @@ public class Product {
     }
 
     /**
+     * Gets price.
+     *
      * @return the price
      */
     public double getPrice() {
@@ -72,6 +120,8 @@ public class Product {
     }
 
     /**
+     * Sets price.
+     *
      * @param price the price to set
      */
     public void setPrice(double price) {
@@ -80,22 +130,28 @@ public class Product {
     }
 
     /**
+     * Gets inv.
+     *
      * @return the inventory
      */
-    public int getStock() {
+    public int getInv() {
 
         return inv;
     }
 
     /**
+     * Sets inv.
+     *
      * @param inv sets as inventory
      */
-    public void setStock(int inv) {
+    public void setInv(int inv) {
 
         this.inv = inv;
     }
 
     /**
+     * Gets min.
+     *
      * @return the min
      */
     public int getMin() {
@@ -104,6 +160,8 @@ public class Product {
     }
 
     /**
+     * Sets min.
+     *
      * @param min sets as minimum
      */
     public void setMin(int min) {
@@ -112,6 +170,8 @@ public class Product {
     }
 
     /**
+     * Gets max.
+     *
      * @return the max
      */
     public int getMax() {
@@ -120,6 +180,8 @@ public class Product {
     }
 
     /**
+     * Sets max.
+     *
      * @param max the max to set
      */
     public void setMax(int max) {
