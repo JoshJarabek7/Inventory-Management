@@ -73,7 +73,7 @@ public class AddProduct implements Initializable {
 
 
     // Declares a variable of type ObservableList and assigns it to the variable associatedPartsList
-    private final ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
 
 
     /**
@@ -233,8 +233,12 @@ public class AddProduct implements Initializable {
             }
             partTable.setItems(partsList);
         }
-        catch (NumberFormatException e){
-            System.out.println("Please enter a valid value into the search bar.");
+        catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Nothing searched");
+            alert.setContentText("Please enter a valid value in the search bar");
+            alert.showAndWait();
         }
     }
 

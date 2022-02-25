@@ -106,8 +106,12 @@ public class ModifyProduct implements Initializable {
         partTable.setItems(partsList);
     }
     catch (NumberFormatException e) {
-        System.out.println("Please enter a valid value into the search field.");
-        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Nothing searched");
+        alert.setContentText("Please enter a valid value in the search bar");
+        alert.showAndWait();
+    }
     }
 
     /**
