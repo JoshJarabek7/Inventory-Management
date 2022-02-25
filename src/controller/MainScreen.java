@@ -20,7 +20,25 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+/*
+Defines the MainScreen class, which is a controller for the Main Menu screen of the application
+ */
+
 public class MainScreen implements Initializable {
+
+
+
+    /*
+    The code starts with a private variable called partTable
+    The table is used to display all the parts within the inventory management application
+    It also includes 3 button which are "Add Part", "Modify Part", and "Delete Part"
+    It also includes 3 variables that allow for a search feature
+
+    The same thing is done for the prodTable to display all the products within the inventory management application
+    Each column in the two tables represents different attributes for each part or product
+    These attributes are things like ID Numbers, Names, Amount in Inventory, and Price divided by Cost per Unit
+     */
 
     @FXML
     private TableView<Part> partTable;
@@ -63,35 +81,75 @@ public class MainScreen implements Initializable {
     @FXML
     private TextField productSearchField;
 
+
+    /*
+    Assigns a null value to the selectedPart variable
+     */
     private static Part selectedPart = null;
+
+    /*
+    Assigns a null value to the selectedProduct variable
+     */
     private static Product selectedProduct = null;
 
+
+
+    /*
+    Getter to return selectedPart
+     */
     public static Part getSelectedPart() {
         return selectedPart;
     }
 
+    /*
+    Getter to return selectedProduct
+     */
     public static Product getSelectedProduct() {
         return selectedProduct;
     }
 
+
+
+
+    /*
+    ADD PARTS TO INVENTORY
+
+    Loads the Add Part screen from the fxml file
+     */
     @FXML
     private void onAddPart(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Add Part.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Add models.Part");
+        stage.setTitle("Add Part");
         stage.setScene(new Scene(root));
         stage.show();
     }
 
+
+
+    /*
+    ADD PRODUCTS TO INVENTORY
+
+    Loads the Add Product screen from the fxml file
+     */
     @FXML
     private void onAddProduct(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Add Product.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Add models.Product");
+        stage.setTitle("Add Product");
         stage.setScene(new Scene(root));
         stage.show();
     }
 
+
+    /*
+    DELETE PARTS FROM INVENTORY
+
+    Checks the part table to see if any items are selected
+    If no items are selected, then an alert is shown saying "Nothing was selected to delete"
+    If an item is selected, then an alert is shown asking to confirm their decision
+    If decision is confirmed, the part will be deleted from inventory
+    */
     @FXML
     private void onDeletePart(ActionEvent event) {
         if (partTable.getSelectionModel().isEmpty()) {
@@ -103,7 +161,7 @@ public class MainScreen implements Initializable {
         } else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete models.Part");
-            alert.setHeaderText("Deleting models.Part");
+            alert.setHeaderText("Deleting Part");
             alert.setContentText("Are you sure you want to delete " + partTable.getSelectionModel().getSelectedItem().getName() + "?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
@@ -113,6 +171,15 @@ public class MainScreen implements Initializable {
         }
     }
 
+
+    /*
+    DELETE PRODUCTS FROM INVENTORY
+
+    Checks the product table to see if any items are selected
+    If no items are selected, then an alert is shown saying "Nothing was selected to delete"
+    If an item is selected, then an alert is shown asking to confirm their decision
+    If decision is confirmed, the product will be deleted from inventory
+    */
     @FXML
     void onDeleteProduct(ActionEvent event) {
         if (prodTable.getSelectionModel().isEmpty()) {
@@ -123,8 +190,8 @@ public class MainScreen implements Initializable {
             alert.showAndWait();
         } else if (Inventory.getAllParts().size() > 0) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Delete models.Product");
-            alert.setHeaderText("Deleting models.Product");
+            alert.setTitle("Delete Product");
+            alert.setHeaderText("Deleting Product");
             alert.setContentText("Are you sure you want to delete " + prodTable.getSelectionModel().getSelectedItem().getName() + "?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
@@ -134,12 +201,24 @@ public class MainScreen implements Initializable {
         }
     }
 
+
+    /*
+    EXIT THE APPLICATION
+
+    This code is used to exit the application when a user presses the "X" button
+     */
     @FXML
     private void onActionExit(ActionEvent event) {
         System.exit(0);
     }
 
+    /*
+    MODIFY PARTS IN INVENTORY
 
+    This code determines what happens when the "Modify Part" button is clicked
+    If no part is selected when clicked, then an Error Alert is shown
+    If a part is selected when clicked, then a new scene object is created and set as the stage for the event
+     */
     @FXML
     private void onModifyPart(ActionEvent event) throws IOException {
         selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -153,12 +232,19 @@ public class MainScreen implements Initializable {
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/views/Modify Part.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Modify models.Part");
+            stage.setTitle("Modify Part");
             stage.setScene(new Scene(root));
             stage.show();
         }
     }
 
+    /*
+    MODIFY PRODUCTS IN INVENTORY
+
+    This code determines what happens when the "Modify Product" button is clicked
+    If no product is selected when clicked, then an Error Alert is shown
+    If a product is selected when clicked, then a new scene object is created and set as the stage for the event
+     */
     @FXML
     private void onModifyProduct(ActionEvent event) throws IOException {
         selectedProduct = prodTable.getSelectionModel().getSelectedItem();
@@ -172,12 +258,19 @@ public class MainScreen implements Initializable {
         } else {
             Parent root = FXMLLoader.load(getClass().getResource("/views/Modify Product.fxml"));
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Modify models.Product");
+            stage.setTitle("Modify Product");
             stage.setScene(new Scene(root));
             stage.show();
         }
     }
 
+    /*
+    SEARCH FOR PARTS IN INVENTORY
+
+    The code starts by searching for the text entered in the search bar
+    If there is no text, it will prompt the user to enter a value
+    After that, it searches for parts using the ObservableList, and adds them to the partTable if they are not already present.
+     */
     @FXML
     private void searchParts(ActionEvent event) {
         String s = partSearchField.getText().toLowerCase();
@@ -195,6 +288,13 @@ public class MainScreen implements Initializable {
         }
     }
 
+    /*
+    SEARCH PRODUCTS IN INVENTORY
+
+    The code starts by searching for the text entered in the search bar
+    If there is no text, it will prompt the user to enter a value
+    After that, it searched for products using the ObservableList, and adds them to the productTable if they are not already present.
+     */
     @FXML
     private void searchProducts(ActionEvent event) {
         String s = productSearchField.getText().toLowerCase();
@@ -206,7 +306,8 @@ public class MainScreen implements Initializable {
                 ProductsList.add(p);
             }
             prodTable.setItems(ProductsList);
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e) {
             System.out.println("Please enter a valid value in the search bar.");
         }
     }

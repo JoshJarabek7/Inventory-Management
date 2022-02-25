@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreen">
-               <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+               <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                    <columnConstraints>
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,13 +53,13 @@
                                    <Font size="12.0" />
                                </font>
                            </Button>
-                           <TextField fx:id="partSearchField" layoutY="48.0" prefHeight="20.0" prefWidth="200.0" promptText="Search Part Name or ID">
+                           <TextField fx:id="partSearchField" cache="true" layoutY="48.0" prefHeight="20.0" prefWidth="200.0" promptText="Search Part Name or ID">
                                <padding>
                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                </padding>
                            </TextField>
                            <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts" />
-                           <Button fx:id="partSearchButton" layoutX="213.0" layoutY="46.0" mnemonicParsing="false" onAction="#searchParts" prefHeight="20.0" prefWidth="75.0" text="Search" />
+                           <Button fx:id="partSearchButton" cache="true" layoutX="213.0" layoutY="46.0" onAction="#searchParts" prefHeight="20.0" prefWidth="75.0" text="Search" />
                        </Pane>
                    </AnchorPane>
                    <GridPane GridPane.rowIndex="2">
@@ -110,13 +110,13 @@
                            </font>
                        </Button>
                        <Text layoutX="13.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products" textAlignment="CENTER" />
-                       <TextField fx:id="productSearchField" layoutY="49.0" prefHeight="20.0" prefWidth="200.0" promptText="Search Product Name or ID">
+                       <TextField fx:id="productSearchField" cache="true" layoutY="49.0" prefHeight="20.0" prefWidth="200.0" promptText="Search Product ID">
                            <padding>
                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
                        </TextField>
                        <Button layoutX="259.0" layoutY="-3.0" mnemonicParsing="false" onAction="#onActionExit" text="X" textFill="#b50000" />
-                       <Button fx:id="productSearchButton" layoutX="213.0" layoutY="46.0" mnemonicParsing="false" onAction="#searchProducts" prefHeight="20.0" prefWidth="75.0" text="Search" />
+                       <Button fx:id="productSearchButton" cache="true" layoutX="213.0" layoutY="46.0" onAction="#searchProducts" prefHeight="20.0" prefWidth="75.0" text="Search" />
                    </Pane>
                </GridPane>
            </VBox>
