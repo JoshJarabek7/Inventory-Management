@@ -76,7 +76,7 @@ public class MainScreen implements Initializable {
 
     @FXML
     private void onAddPart(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/views/Add Part.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Add Part.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("Add models.Part");
         stage.setScene(new Scene(root));
@@ -85,7 +85,7 @@ public class MainScreen implements Initializable {
 
     @FXML
     private void onAddProduct(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/views/Add Product.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Add Product.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("Add models.Product");
         stage.setScene(new Scene(root));
@@ -139,6 +139,7 @@ public class MainScreen implements Initializable {
         System.exit(0);
     }
 
+
     @FXML
     private void onModifyPart(ActionEvent event) throws IOException {
         selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -150,8 +151,8 @@ public class MainScreen implements Initializable {
             alert.setContentText("Nothing was selected to modify");
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("src/views/Modify Part.fxml"));
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/views/Modify Part.fxml"));
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Modify models.Part");
             stage.setScene(new Scene(root));
             stage.show();
@@ -169,7 +170,7 @@ public class MainScreen implements Initializable {
             alert.setContentText("Nothing was selected to modify");
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("src/views/Modify Product.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/views/Modify Product.fxml"));
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Modify models.Product");
             stage.setScene(new Scene(root));
@@ -222,7 +223,7 @@ public class MainScreen implements Initializable {
         prodTable.setItems(Inventory.getAllProducts());
         prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
+        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 

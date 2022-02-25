@@ -190,7 +190,7 @@ public class ModifyProduct implements Initializable {
     }
 
     public void goToMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("");
         stage.setScene(new Scene(root));

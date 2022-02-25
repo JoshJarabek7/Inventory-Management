@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import models.*;
 
@@ -9,10 +10,8 @@ public class JoshJarabek_Inventory extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("src/views/Main Screen.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.show();
     }
