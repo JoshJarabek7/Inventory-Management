@@ -4,6 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ *
+ * @author Josh Jarabek
+ */
+
+/**
  * Creates a class called "Inventory"
  */
 public class Inventory {

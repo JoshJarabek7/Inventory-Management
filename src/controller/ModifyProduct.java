@@ -19,78 +19,176 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+/**
+ *
+ * @author Josh Jarabek
+ */
+
+
 /**
  * Creates a new instance of the ModifyProduct class
  */
-
 public class ModifyProduct implements Initializable {
 
-    // Functions for the "Modify Product" screen
+    /**
+     * Functions for the "Modify Product" screen
+    */
 
+
+    /**
+     * The Prod id text.
+     */
     @FXML
     private TextField prodIdText;
+
+    /**
+     * The Prod name text.
+     */
     @FXML
     private TextField prodNameText;
+
+    /**
+     * The Prod inv text.
+     */
     @FXML
     private TextField prodInvText;
+
+    /**
+     * The Prod price text.
+     */
     @FXML
     private TextField prodPriceText;
+
+    /**
+     * The Prod max text.
+     */
     @FXML
     private TextField prodMaxText;
+
+    /**
+     * The Prod min text.
+     */
     @FXML
     private TextField prodMinText;
+
+    /**
+     * The Part table.
+     */
     @FXML
     private TableView<Part> partTable;
+
+    /**
+     * The Part id col.
+     */
     @FXML
     private TableColumn<Part, Integer> partIdCol;
+
+    /**
+     * The Part name col.
+     */
     @FXML
     private TableColumn<Part, String> partNameCol;
+
+    /**
+     * The Part inv col.
+     */
     @FXML
     private TableColumn<Part, Integer> partInvCol;
+
+    /**
+     * The Part price col.
+     */
     @FXML
     private TableColumn<Part, Double> partPriceCol;
+
+    /**
+     * The Associated part table.
+     */
     @FXML
     private TableView<Part> associatedPartTable;
+
+    /**
+     * The Associated part id col.
+     */
     @FXML
     private TableColumn<Part, Integer> associatedPartIdCol;
+
+    /**
+     * The Associated part name col.
+     */
     @FXML
     private TableColumn<Part, String> associatedPartNameCol;
+
+    /**
+     * The Associated part inv col.
+     */
     @FXML
     private TableColumn<Part, Integer> associatedPartInvCol;
+
+    /**
+     * The Associated part price col.
+     */
     @FXML
     private TableColumn<Part, Double> associatedPartPriceCol;
+
+    /**
+     * The M add button.
+     */
     @FXML
     private Button mAddButton;
+
+    /**
+     * The M delete button.
+     */
     @FXML
     private Button mDeleteButton;
+
+    /**
+     * The M cancel button.
+     */
     @FXML
     private Button mCancelButton;
+
+    /**
+     * The M save button.
+     */
     @FXML
     private Button mSaveButton;
+
+    /**
+     * The Part search button.
+     */
     @FXML
     private Button partSearchButton;
+
+    /**
+     * The Part search field.
+     */
     @FXML
     private TextField partSearchField;
 
 
-    // Retrieves the selected product from the MainScreen and assigns it to a variable named selectedProduct
+    /**
+     * The Selected product.
+     * Retrieves the selected product from the MainScreen and assigns it to a variable named selectedProduct
+     */
     private Product selectedProduct = MainScreen.getSelectedProduct();
 
     /**
      * The Associated parts list.
      * Iterates over the selectedProduct and returns a list of all associated parts
      */
-
     ObservableList<Part> associatedPartsList = selectedProduct.getAllAssociatedParts();
 
     /**
      * The method for what happens when the search button is clicked
-     *
+     * <p>
      * The method is a search function for parts
      * The purpose of the code is to search for parts in the inventory that contain a string value of "s"
      * When the search button is clicked, a search is done on the text within the partSearchField
      *
-     * @param event
+     * @param event the event
      */
     @FXML
     private void searchParts(ActionEvent event) {
@@ -116,14 +214,13 @@ public class ModifyProduct implements Initializable {
 
     /**
      * The method for what happens when the "Add" button is clicked
-     *
+     * <p>
      * Functionality for adding associated parts to the product being modified
      * If no parts are selected, it will return
      * If parts are selected, they will be added to the associated parts list
      *
-     * @param event
+     * @param event the event
      */
-
     @FXML
     private void onActionAdd(ActionEvent event) {
         Part selectedPart = partTable.getSelectionModel().getSelectedItem();
@@ -149,13 +246,12 @@ public class ModifyProduct implements Initializable {
 
     /**
      * The method for what happens when the "Remove Associated Part" button is clicked
-     *
+     * <p>
      * If nothing is selected, an error alert will be shown to the user
      * If a part is selected, a confirmation alert will be shown where the user can confirm their decision
      *
-     * @param event
+     * @param event the event
      */
-
     @FXML
     private void onActionDelete(ActionEvent event) {
         if (associatedPartTable.getSelectionModel().isEmpty()) {
@@ -185,10 +281,9 @@ public class ModifyProduct implements Initializable {
      * A confirmation alert is thrown asking the user to confirm the cancellation
      * If the user clicks "OK" on the confirmation alert, they are taken back to MainScreen
      *
-     * @param event
-     * @throws IOException
+     * @param event the event
+     * @throws IOException the io exception
      */
-
     @FXML
     private void onActionCancel(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -204,15 +299,14 @@ public class ModifyProduct implements Initializable {
     /**
      * The method for what happens when the "Save" button is clicked
      * Error alerts set in place for:
-     *     1. The product's maximum inventory entered is less than the product's minimum inventory entered.
-     *     2. The product's current inventory entered is greater than the product's maximum inventory entered.
-     *     3. The product's current inventory entered is less than the product's minimum inventory entered.
-     *     4. Values entered are not valid (ex. Text was entered in an integer only field).
+     * 1. The product's maximum inventory entered is less than the product's minimum inventory entered.
+     * 2. The product's current inventory entered is greater than the product's maximum inventory entered.
+     * 3. The product's current inventory entered is less than the product's minimum inventory entered.
+     * 4. Values entered are not valid (ex. Text was entered in an integer only field).
      *
-     * @param event
-     * @throws IOException
+     * @param event the event
+     * @throws IOException the io exception
      */
-
     @FXML
     private void onActionSave(ActionEvent event) throws IOException {
         try {
@@ -274,7 +368,7 @@ public class ModifyProduct implements Initializable {
 
     /**
      * Go to main.
-     *
+     * <p>
      * The method for what happens when the goToMain method is actioned
      * The MainScreen view is loaded into a Node object and is passed to the goToMain() method
      * This sends the user back to the MainScreen
@@ -282,7 +376,6 @@ public class ModifyProduct implements Initializable {
      * @param event the event
      * @throws IOException the io exception
      */
-
     public void goToMain(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

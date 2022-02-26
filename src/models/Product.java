@@ -4,6 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ *
+ * @author Josh Jarabek
+ */
+
+
+/**
  * Creates a class called Product
  * Declares each variable, as well as a private ObservableList called associatedParts
  */

@@ -1,6 +1,12 @@
 package models;
 
 /**
+ *
+ * @author Josh Jarabek
+ */
+
+
+/**
  * Creates a new class called Outsource that extends the Part class
  */
 public class Outsource extends Part {

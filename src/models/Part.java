@@ -4,6 +4,7 @@ package models;
  *
  * @author Josh Jarabek
  */
+
 public abstract class Part {
     private int id;
     private String name;

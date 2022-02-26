@@ -1,6 +1,12 @@
 package models;
 
 /**
+ *
+ * @author Josh Jarabek
+ */
+
+
+/**
  * Creates a class that extends the Part class
  */
 

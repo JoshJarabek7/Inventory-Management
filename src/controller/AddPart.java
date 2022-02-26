@@ -21,11 +21,23 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-// Creates a new instance of the AddPart class
+
+/**
+ *
+ * @author Josh Jarabek
+ */
+
+
+
+/**
+ * Creates a new instance of the AddPart class
+ */
+
 public class AddPart implements Initializable {
 
-
-    // The functions for the "Add Part" screen
+    /**
+     * The functions for the "Add Part" screen
+     */
 
     @FXML
     private AnchorPane IHRadio;
