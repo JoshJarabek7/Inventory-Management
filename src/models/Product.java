@@ -13,7 +13,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
-    private int inv;
+    private int stock;
     private int min;
     private int max;
 
@@ -23,15 +23,15 @@ public class Product {
      * @param id    the id
      * @param name  the name
      * @param price the price
-     * @param inv   the inv
+     * @param stock   the stock
      * @param min   the min
      * @param max   the max
      */
-    public Product(int id, String name, double price, int inv, int min, int max) {
+    public Product(int id, String name, double price, int stock, int min, int max) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.inv = inv;
+        this.stock = stock;
         this.min = min;
         this.max = max;
     }
@@ -127,23 +127,23 @@ public class Product {
     }
 
     /**
-     * Gets inv.
+     * Gets stock.
      *
      * @return the inventory
      */
-    public int getInv() {
+    public int getStock() {
 
-        return inv;
+        return stock;
     }
 
     /**
-     * Sets inv.
+     * Sets stock.
      *
-     * @param inv sets as inventory
+     * @param stock sets as inventory
      */
-    public void setInv(int inv) {
+    public void setStock(int stock) {
 
-        this.inv = inv;
+        this.stock = stock;
     }
 
     /**

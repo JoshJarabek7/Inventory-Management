@@ -170,9 +170,12 @@ public class ModifyPart implements Initializable {
 
         // Exception thrown if the values entered are not valid
         catch (NumberFormatException e) {
-            System.out.println("Please enter valid values in the fields.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Nothing searched");
+            alert.setContentText("Please enter a valid value in the search bar");
+            alert.showAndWait();
         }
-
     }
 
     /**

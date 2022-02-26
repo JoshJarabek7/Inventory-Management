@@ -18,7 +18,7 @@ public class Outsource extends Part {
      * @param id          the id
      * @param name        the name
      * @param price       the price
-     * @param stock       the stock
+     * @param stock       the inventory
      * @param min         the min
      * @param max         the max
      * @param companyName the company name

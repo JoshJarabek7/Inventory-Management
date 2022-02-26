@@ -391,7 +391,7 @@ public class MainScreen implements Initializable {
         prodTable.setItems(Inventory.getAllProducts());
         prodIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         prodNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
+        prodInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         prodPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 

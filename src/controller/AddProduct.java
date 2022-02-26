@@ -205,9 +205,14 @@ public class AddProduct implements Initializable {
             }
         }
         // Exception thrown if the values entered are not valid
-        catch (NumberFormatException e){ System.out.println("Please enter valid value into the field."); }
+        catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Nothing searched");
+            alert.setContentText("Please enter a valid value in the search bar");
+            alert.showAndWait();
+        }
     }
-
 
     /**
      * Search parts.
@@ -240,7 +245,7 @@ public class AddProduct implements Initializable {
             alert.setContentText("Please enter a valid value in the search bar");
             alert.showAndWait();
         }
-    }
+        }
 
     /**
      * On action cancel.
@@ -310,7 +315,7 @@ public class AddProduct implements Initializable {
         associatedPartTable.setItems(associatedPartsList);
         associatedPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
+        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 

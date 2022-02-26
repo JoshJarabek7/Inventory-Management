@@ -247,11 +247,11 @@ public class ModifyProduct implements Initializable {
                 selectedProduct.setId(Integer.parseInt(prodIdText.getText()));
                 selectedProduct.setName(prodNameText.getText());
                 selectedProduct.setPrice(Double.parseDouble(prodPriceText.getText()));
-                selectedProduct.setInv(Integer.parseInt(prodInvText.getText()));
+                selectedProduct.setStock(Integer.parseInt(prodInvText.getText()));
                 selectedProduct.setMin(Integer.parseInt(prodMinText.getText()));
                 selectedProduct.setMax(Integer.parseInt(prodMaxText.getText()));
 
-                Product modifiedProduct = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getPrice(), selectedProduct.getInv(), selectedProduct.getMin(), selectedProduct.getMax());
+                Product modifiedProduct = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getPrice(), selectedProduct.getStock(), selectedProduct.getMin(), selectedProduct.getMax());
                 Inventory.modifyProduct(selectedProduct.getId(),modifiedProduct);
 
                 for (Part part : associatedPartsList) {
@@ -264,7 +264,11 @@ public class ModifyProduct implements Initializable {
         }
         // Exception thrown if the values entered are not valid
         catch (NumberFormatException e) {
-            System.out.println("Please enter valid values.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Nothing searched");
+            alert.setContentText("Please enter a valid value in the search bar");
+            alert.showAndWait();
         }
     }
 
@@ -313,12 +317,12 @@ public class ModifyProduct implements Initializable {
         associatedPartTable.setItems(selectedProduct.getAllAssociatedParts());
         associatedPartIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         associatedPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("inv"));
+        associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         prodIdText.setText(Integer.toString(selectedProduct.getId()));
         prodNameText.setText(selectedProduct.getName());
-        prodInvText.setText(Integer.toString(selectedProduct.getInv()));
+        prodInvText.setText(Integer.toString(selectedProduct.getStock()));
         prodPriceText.setText(Double.toString(selectedProduct.getPrice()));
         prodMaxText.setText(Integer.toString(selectedProduct.getMax()));
         prodMinText.setText(Integer.toString(selectedProduct.getMin()));
