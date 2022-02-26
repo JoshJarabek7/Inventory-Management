@@ -19,7 +19,7 @@ public class JoshJarabek_Inventory extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Main Screen.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1200, 800);
         stage.setScene(scene);
         stage.show();
     }

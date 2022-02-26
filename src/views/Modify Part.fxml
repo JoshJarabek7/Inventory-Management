@@ -6,52 +6,59 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyPart">
-   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-               prefWidth="600.0">
-      <Pane layoutX="50.0" layoutY="50.0" prefHeight="300.0" prefWidth="500.0">
-         <TextField fx:id="partIdText" editable="false" layoutX="125.0" layoutY="20.5" prefHeight="20.0"
-                    prefWidth="300.0" promptText="Auto Generated">
-            <font>
-               <Font size="10.0"/>
-            </font>
-         </TextField>
-         <TextField fx:id="partNameText" layoutX="125.0" layoutY="50.5" prefHeight="20.0" prefWidth="300.0"
-                    promptText="Enter Part's Name"/>
-         <TextField fx:id="partInvText" layoutX="125.0" layoutY="83.5" prefHeight="20.0" prefWidth="300.0"
-                    promptText="Enter Inventory"/>
-         <TextField fx:id="partPriceText" layoutX="125.0" layoutY="116.5" prefHeight="20.0" prefWidth="300.0"
-                    promptText="Enter Price/Cost"/>
-         <TextField fx:id="partMaxText" layoutX="125.0" layoutY="149.5" prefHeight="20.0" prefWidth="300.0"
-                    promptText="Enter Maximum"/>
-         <Text layoutX="33.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Number"/>
-         <Text layoutX="46.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name"/>
-         <Text layoutX="37.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory"/>
-         <Text layoutX="34.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost"/>
-         <Text layoutX="50.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max"/>
-         <Text layoutX="52.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min"/>
-         <TextField fx:id="partMinText" layoutX="125.0" layoutY="183.0" prefHeight="20.0" prefWidth="300.0"
-                    promptText="Enter Minimum"/>
-         <Button fx:id="mSaveButton" layoutX="322.0" layoutY="261.0" mnemonicParsing="false"
-                 onAction="#onActionSave" text="Save"/>
-         <Button fx:id="mCancelButton" layoutX="368.0" layoutY="261.0" mnemonicParsing="false"
-                 onAction="#onActionCancel" text="Cancel"/>
-         <Text layoutX="31.5" layoutY="-30.431640625" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Part"/>
-         <TextField fx:id="mLabelText" layoutX="125.0" layoutY="216.0" prefHeight="20.0" prefWidth="300.0"/>
-         <Label fx:id="mLabel" layoutX="33.0" layoutY="220.0" prefHeight="17.0" prefWidth="59.0"/>
-      </Pane>
-      <RadioButton fx:id="mIHRadio" layoutX="319.0" layoutY="5.0" mnemonicParsing="false" onAction="#sourceToggle"
-                   text="InHouse">
-         <toggleGroup>
-            <ToggleGroup fx:id="SourceToggle"/>
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="mOSRadio" layoutX="458.0" layoutY="5.0" mnemonicParsing="false" onAction="#sourceToggle"
-                   text="Outsourced" toggleGroup="$SourceToggle"/>
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyPart">
+   <AnchorPane prefHeight="800.0" prefWidth="1200.0">
+      <GridPane alignment="CENTER_LEFT" layoutX="100.0" layoutY="98.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="partIdText" editable="false" prefHeight="20.0" prefWidth="300.0" promptText="Auto Generated" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="partNameText" prefHeight="20.0" prefWidth="300.0" promptText="Enter Part's Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="partInvText" prefHeight="20.0" prefWidth="300.0" promptText="Enter Inventory" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="partPriceText" prefHeight="20.0" prefWidth="300.0" promptText="Enter Price/Cost" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="partMaxText" prefHeight="20.0" prefWidth="300.0" promptText="Enter Maximum" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Number" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Max" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" GridPane.rowIndex="6" />
+            <TextField fx:id="partMinText" prefHeight="20.0" prefWidth="300.0" promptText="Enter Minimum" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="mLabelText" prefHeight="20.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="mLabel" prefHeight="17.0" prefWidth="59.0" GridPane.rowIndex="7" />
+            <RadioButton fx:id="mIHRadio" mnemonicParsing="false" onAction="#sourceToggle" text="InHouse">
+               <toggleGroup>
+                  <ToggleGroup fx:id="SourceToggle" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="mOSRadio" mnemonicParsing="false" onAction="#sourceToggle" text="Outsourced" toggleGroup="$SourceToggle" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Text layoutX="50.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Part" />
+      <Button fx:id="mSaveButton" layoutX="1047.0" layoutY="750.0" mnemonicParsing="false" onAction="#onActionSave" text="Save" />
+      <Button fx:id="mCancelButton" layoutX="1093.0" layoutY="750.0" mnemonicParsing="false" onAction="#onActionCancel" text="Cancel" />
    </AnchorPane>
 </VBox>
