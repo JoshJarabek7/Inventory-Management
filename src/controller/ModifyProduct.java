@@ -346,7 +346,7 @@ public class ModifyProduct implements Initializable {
                 selectedProduct.setMax(Integer.parseInt(prodMaxText.getText()));
 
                 Product modifiedProduct = new Product(selectedProduct.getId(), selectedProduct.getName(), selectedProduct.getPrice(), selectedProduct.getStock(), selectedProduct.getMin(), selectedProduct.getMax());
-                Inventory.modifyProduct(selectedProduct.getId(),modifiedProduct);
+                Inventory.updateProduct(selectedProduct.getId(),modifiedProduct);
 
                 for (Part part : associatedPartsList) {
                     modifiedProduct.addAssociatedParts(part);

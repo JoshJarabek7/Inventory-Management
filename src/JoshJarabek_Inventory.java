@@ -10,6 +10,24 @@ import models.*;
  * @author Josh Jarabek
  */
 
+/**
+ * RUNTIME_ERROR
+ * Could not get the FXML loader to work for multiple days
+ * I received multiple different runtime errors and nullpointer exceptions
+ *
+ * Two things were wrong:
+ *
+ * I had created a stage I had forgotten about on the Main Screen fxml
+ * I also was putting the wrong name for the path to the fxml file
+ */
+
+/**
+ * FUTURE_ENHANCEMENT
+ * I tried forever to get the application to grow and shrink with the box resizing, but I couldn't
+ * ever perfect it. I'd like for it to be proportional nobody how the user resizes the window.
+ * I'd also like to make it more aesthetically pleasing, because it currently looks like an application
+ * from Windows 98.
+ */
 
 /**
  * Creates the JoshJarabek_Inventory class which serves as the main

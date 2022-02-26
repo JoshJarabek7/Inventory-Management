@@ -135,7 +135,7 @@ public class Inventory {
      * @param selectedPart the selected part
      */
 
-    public static void modifyPart(int id, Part selectedPart) {
+    public static void updatePart(int id, Part selectedPart) {
         int index = -1;
         for (Part part : getAllParts()) {
             index++;
@@ -152,7 +152,7 @@ public class Inventory {
      * @param newProduct the new product
      */
 
-    public static void modifyProduct(int id, Product newProduct) {
+    public static void updateProduct(int id, Product newProduct) {
         int index = -1;
         for (Product product : getAllProducts()) {
             index++;

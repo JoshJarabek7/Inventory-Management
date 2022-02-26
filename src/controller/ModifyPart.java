@@ -226,7 +226,7 @@ public class ModifyPart implements Initializable {
     private void modifyPartInHouse() {
         Part inHousePart = new InHouse(selectedPart.getId(),selectedPart.getName(),selectedPart.getPrice(),selectedPart.getStock(),selectedPart.getMin(),selectedPart.getMax(),Integer.parseInt(mLabelText.getText()));
 
-        Inventory.modifyPart(selectedPart.getId(),inHousePart);
+        Inventory.updatePart(selectedPart.getId(),inHousePart);
     }
 
     /**
@@ -236,7 +236,7 @@ public class ModifyPart implements Initializable {
     private void modifyPartOutsource() {
         Part outsourcePart = new Outsource(selectedPart.getId(),selectedPart.getName(),selectedPart.getPrice(),selectedPart.getStock(),selectedPart.getMin(),selectedPart.getMax(),mLabelText.getText());
 
-        Inventory.modifyPart(selectedPart.getId(),outsourcePart);
+        Inventory.updatePart(selectedPart.getId(),outsourcePart);
 
     }
 
